@@ -4,7 +4,6 @@ import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
-
 const Register = () => {
   const {
     register,
@@ -13,7 +12,7 @@ const Register = () => {
   } = useForm();
 
   const { createUser, updateUser } = useContext(AuthContext);
-  const [signupError, setSignupError] = useState('');
+  const [signupError, setSignupError] = useState("");
   const navigate = useNavigate();
 
   const handleRegister = (data) => {
@@ -22,62 +21,49 @@ const Register = () => {
     const name = data.name;
     const email = data.email;
     const password = data.password;
-    setSignupError('');
+    setSignupError("");
 
     createUser(email, password)
-      .then(result => {
+      .then((result) => {
         const user = result.user;
         console.log(user);
         toast.success("Registration Successful..");
 
         const userInfo = {
-          displayName: name
-        }
+          displayName: name,
+        };
 
         updateUser(userInfo)
           .then(() => {
             saveUser(role, name, email);
           })
-          .catch(err => console.error(err))
+          .catch((err) => console.error(err));
       })
 
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
-        setSignupError(error.message)
-      })
+        setSignupError(error.message);
+      });
   };
-
-  const saveUser = (role, name, email) => {
-    const user = { role, name, email };
-    fetch('http://localhost:5000/users', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(user)
-    })
-      .then(res => res.json())
-      .then(data => {
-        // setCreatedUserEmail(email);
-        console.log('save user', data);
-        navigate('/');
-      })
-  }
-
 
   return (
     <div>
       <div className="text-center flex flex-col h-[550px] justify-center items-center">
-        <h3 className="text-2xl text-center font-semibold text-cyan-600 mt-16">Please Register</h3>
+        <h3 className="text-2xl text-center font-semibold text-cyan-600 mt-16">
+          Please Register
+        </h3>
         <div className="shadow-xl p-5 lg:p-6 rounded-2xl border mt-5">
           <form onSubmit={handleSubmit(handleRegister)}>
-
             <div className="form-control w-full max-w-xs">
-              <label className="label"> <span className="label-text">Select Account Type</span></label>
+              <label className="label">
+                {" "}
+                <span className="label-text">Select Account Type</span>
+              </label>
               <select
-                {...register('role')}
-                className="select input-bordered w-full max-w-xs font-normal">
-                <option value="buyer" >Buyer Account</option>
+                {...register("role")}
+                className="select input-bordered w-full max-w-xs font-normal"
+              >
+                <option value="buyer">Buyer Account</option>
                 <option value="seller">Seller Account</option>
               </select>
             </div>
@@ -127,7 +113,11 @@ const Register = () => {
                     value: 6,
                     message: "Password must be six character or longer",
                   },
-                  pattern: { value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: 'Password must have uppercase, number and special characters' }
+                  pattern: {
+                    value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/,
+                    message:
+                      "Password must have uppercase, number and special characters",
+                  },
                 })}
               />
               {errors.password && (
@@ -138,11 +128,16 @@ const Register = () => {
             </div>
 
             <div>
-              {signupError && <p className="text-error font-semibold">{signupError}</p>}
+              {signupError && (
+                <p className="text-error font-semibold">{signupError}</p>
+              )}
             </div>
 
             <div className="form-control mt-6">
-              <button className="btn btn-accent bg-cyan-500 text-white" value="register">
+              <button
+                className="btn btn-accent bg-cyan-500 text-white"
+                value="register"
+              >
                 Register
               </button>
               <label className="label">
@@ -150,9 +145,9 @@ const Register = () => {
                   <span className="text-xs text-center">
                     Already have an account?
                   </span>
-                  <Link to="/login"> <span className="text-xs text-primary">
-                    Please Log in
-                  </span>
+                  <Link to="/login">
+                    {" "}
+                    <span className="text-xs text-primary">Please Log in</span>
                   </Link>
                 </p>
               </label>
