@@ -46,6 +46,23 @@ const Register = () => {
       });
   };
 
+  const saveUser = (role, name, email) => {
+    const user = { role, name, email };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // setCreatedUserEmail(email);
+        console.log("save user", data);
+        navigate("/");
+      });
+  };
+
   return (
     <div>
       <div className="text-center flex flex-col h-[550px] justify-center items-center">
@@ -56,7 +73,6 @@ const Register = () => {
           <form onSubmit={handleSubmit(handleRegister)}>
             <div className="form-control w-full max-w-xs">
               <label className="label">
-                {" "}
                 <span className="label-text">Select Account Type</span>
               </label>
               <select
@@ -146,7 +162,6 @@ const Register = () => {
                     Already have an account?
                   </span>
                   <Link to="/login">
-                    {" "}
                     <span className="text-xs text-primary">Please Log in</span>
                   </Link>
                 </p>

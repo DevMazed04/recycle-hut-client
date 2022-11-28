@@ -11,18 +11,18 @@ const Login = () => {
   } = useForm();
 
   const { signIn, googleSignIn } = useContext(AuthContext);
-  const [loginError, setLoginError] = useState('');
+  const [loginError, setLoginError] = useState("");
 
   const location = useLocation();
   const navigate = useNavigate();
 
-  const from = location.state?.from?.pathname || '/';
+  const from = location.state?.from?.pathname || "/";
 
   const handleLogin = (data) => {
     console.log(data);
     const email = data.email;
     const password = data.password;
-    setLoginError('');
+    setLoginError("");
 
     signIn(email, password)
       .then((result) => {
@@ -34,7 +34,7 @@ const Login = () => {
         console.error(error);
         setLoginError(error.message);
       });
-  }
+  };
 
   const handleGoogleSignIn = (event) => {
     event.preventDefault();
@@ -52,7 +52,9 @@ const Login = () => {
 
   return (
     <div className="text-center flex flex-col h-[550px] justify-center items-center">
-      <h3 className="text-2xl text-center font-semibold text-cyan-600 mt-16"> Login Here</h3>
+      <h3 className="text-2xl text-center font-semibold text-cyan-600 mt-16">
+        Login Here
+      </h3>
       <div className="shadow-xl p-5 lg:p-6 rounded-2xl border mt-5">
         <form onSubmit={handleSubmit(handleLogin)}>
           <div className="form-control">
@@ -96,31 +98,35 @@ const Login = () => {
           </div>
 
           <div>
-            {
-              loginError &&
+            {loginError && (
               <p className="text-error font-semibold">{loginError}</p>
-            }
+            )}
           </div>
 
           <div className="form-control mt-6">
-            <button className="btn btn-accent bg-cyan-500 text-white" value="login">
+            <button
+              className="btn btn-accent bg-cyan-500 text-white"
+              value="login"
+            >
               Login
             </button>
           </div>
           <div className="divider">OR</div>
           <div className="form-control">
-            <button className="btn btn-outline-accent" onClick={handleGoogleSignIn}>
+            <button
+              className="btn btn-outline-accent"
+              onClick={handleGoogleSignIn}
+            >
               GOOGLE
             </button>
           </div>
 
           <label className="label">
             <p>
-              <span className="text-xs text-center">
-                New to Recycle Hut?
-              </span>
+              <span className="text-xs text-center">New to Recycle Hut?</span>
               <Link to="/register">
-                <span className="text-xs text-primary"> Create new account
+                <span className="text-xs text-primary">
+                  Create new account
                 </span>
               </Link>
             </p>
