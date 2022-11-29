@@ -10,7 +10,7 @@ const Login = () => {
     handleSubmit,
   } = useForm();
 
-  const { signIn, googleSignIn } = useContext(AuthContext);
+  const { signIn, googleSignIn, updateUser } = useContext(AuthContext);
   const [loginError, setLoginError] = useState("");
 
   const location = useLocation();
@@ -43,10 +43,42 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+
+        const name = user.displayName;
+        const email = user.email;
+        const role = "buyer";
+
+        const userInfo = {
+          name: name,
+          email: email,
+          role: role,
+        };
+
+        updateUser(userInfo)
+          .then(() => {
+            saveUser(role, name, email);
+          })
+          .catch((err) => console.error(err));
       })
       .catch((error) => {
         console.error(error);
         setLoginError(error.message);
+      });
+  };
+
+  const saveUser = (role, name, email) => {
+    const user = { role, name, email };
+    fetch("https://recycle-hut-server.vercel.app/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("save user", data);
+        navigate("/");
       });
   };
 
@@ -123,11 +155,9 @@ const Login = () => {
 
           <label className="label">
             <p>
-              <span className="text-xs text-center">New to Recycle Hut?</span>
+              <span className="text-xs text-center"> New to Recycle Hut? </span>
               <Link to="/register">
-                <span className="text-xs text-primary">
-                  Create new account
-                </span>
+                <span className="text-xs text-primary">Create new account</span>
               </Link>
             </p>
           </label>

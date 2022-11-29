@@ -8,7 +8,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:5000/categories')
+    fetch('https://recycle-hut-server.vercel.app/categories')
       .then(res => res.json())
       .then(data => setCategories(data))
   }, []);
@@ -62,7 +62,7 @@ const Navbar = () => {
     </React.Fragment>
 
   return (
-    <div>
+    <div className='z-10'>
       <div className="navbar flex justify-between bg-cyan-600 text-white">
         <div className="navbar-start">
           <div className="dropdown" >

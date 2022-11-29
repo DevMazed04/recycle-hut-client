@@ -18,7 +18,7 @@ const AddProduct = () => {
    const { data: categories, isLoading } = useQuery({
       queryKey: ['category'],
       queryFn: async () => {
-         const res = await fetch('http://localhost:5000/categories');
+         const res = await fetch('https://recycle-hut-server.vercel.app/categories');
          const data = await res.json();
          return data;
       }
@@ -53,14 +53,15 @@ const AddProduct = () => {
                resalePrice: data.resalePrice,
                originalPrice: data.originalPrice,
                sellerName: data.sellerName,
+               // sellerName: user.displayName,
                sellerMobile: data.sellerMobile,
-               sellerEmail: user?.email,
+               sellerEmail: user.email,
                location: data.location
             }
             console.log('product:', product)
 
             // // save product information to the database
-            fetch('http://localhost:5000/products', {
+            fetch('https://recycle-hut-server.vercel.app/products', {
                method: 'POST',
                headers: {
                   'content-type': 'application/json',
@@ -176,18 +177,10 @@ const AddProduct = () => {
 
             <div className="form-control w-full">
                <label className="label"> <span className="label-text font-semibold">Seller Name</span></label>
-               <input type="text" {...register("sellerName", {
+               <input type="text" defaultValue={user?.displayName} {...register("sellerName", {
                   required: true
                })} className="input input-bordered w-full" />
                {errors.sellerName && <p className='text-red-500'>{errors.sellerName.message}</p>}
-            </div>
-
-            <div className="form-control w-full">
-               <label className="label"> <span className="label-text font-semibold">Seller Mobile</span></label>
-               <input type="text" {...register("sellerMobile", {
-                  required: true
-               })} className="input input-bordered w-full" />
-               {errors.sellerMobile && <p className='text-red-500'>{errors.sellerMobile.message}</p>}
             </div>
 
             <div className="form-control w-full">
@@ -196,6 +189,14 @@ const AddProduct = () => {
                   required: true
                })} className="input input-bordered w-full" />
                {errors.sellerEmail && <p className='text-red-500'>{errors.sellerEmail.message}</p>}
+            </div>
+
+            <div className="form-control w-full">
+               <label className="label"> <span className="label-text font-semibold">Seller Mobile</span></label>
+               <input type="text" {...register("sellerMobile", {
+                  required: true
+               })} className="input input-bordered w-full" />
+               {errors.sellerMobile && <p className='text-red-500'>{errors.sellerMobile.message}</p>}
             </div>
 
             <div className="form-control w-full">

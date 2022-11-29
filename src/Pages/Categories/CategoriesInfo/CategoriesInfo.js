@@ -5,14 +5,14 @@ const CategoriesInfo = () => {
    const [categoriesInfo, setCategoriesInfo] = useState([]);
 
    useEffect(() => {
-      fetch('http://localhost:5000/categories')
+      fetch('https://recycle-hut-server.vercel.app/categories')
          .then(res => res.json())
          .then(data => setCategoriesInfo(data))
    }, []);
 
    return (
       <div>
-         <h3 className="uppercase text-[20px] text-secondary font-semibold mb-4">
+         <h3 className="uppercase text-[20px] text-cyan-500 font-bold mb-4">
             Phone Categories
          </h3>
 

@@ -15,12 +15,9 @@ const MyProducts = () => {
 
   const { data: products, isLoading, refetch } = useQuery({
     queryKey: ['products'],
-    queryFn: async () => {
+    queryFn: async () => { 
       try {
-        const res = await fetch('http://localhost:5000/products', {
-          // headers: {
-          //    authorization: `bearer ${localStorage.getItem('accessToken')}`
-          // }
+        const res = await fetch('https://recycle-hut-server.vercel.app/products', {
         });
         const data = await res.json();
         return data;
@@ -31,17 +28,14 @@ const MyProducts = () => {
   });
 
   const handleDeleteProduct = product => {
-    fetch(`http://localhost:5000/products/${product._id}`, {
+    fetch(`https://recycle-hut-server.vercel.app/products/${product._id}`, {
       method: 'DELETE',
-      // headers: {
-      //    authorization: `bearer ${localStorage.getItem('accessToken')}`
-      // }
     })
       .then(res => res.json())
       .then(data => {
         if (data.deletedCount > 0) {
           refetch();
-          toast.success(`${product.name} deleted successfully`)
+          toast.success(`${product.productName} deleted successfully`)
         }
       })
   }

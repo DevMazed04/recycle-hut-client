@@ -11,14 +11,14 @@ const Products = () => {
    const { data: products = [], refetch, isLoading } = useQuery({
       queryKey: ['products'],
       queryFn: async () => {
-         const res = await fetch("http://localhost:5000/products");
+         const res = await fetch("https://recycle-hut-server.vercel.app/products");
          const data = await res.json();
          return data;
       }
    });
 
    // useEffect(() => {
-   //    fetch('http://localhost:5000/androidPhones')
+   //    fetch('https://recycle-hut-server.vercel.app/androidPhones')
    //       .then(res => res.json())
    //       .then(data => setAndroidPhones(data))
    // }, []);

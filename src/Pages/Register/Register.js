@@ -30,7 +30,7 @@ const Register = () => {
         toast.success("Registration Successful..");
 
         const userInfo = {
-          displayName: name,
+          displayName: name
         };
 
         updateUser(userInfo)
@@ -48,7 +48,7 @@ const Register = () => {
 
   const saveUser = (role, name, email) => {
     const user = { role, name, email };
-    fetch("http://localhost:5000/users", {
+    fetch("https://recycle-hut-server.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -162,7 +162,7 @@ const Register = () => {
                     Already have an account?
                   </span>
                   <Link to="/login">
-                    <span className="text-xs text-primary">Please Log in</span>
+                    <span className="text-xs text-primary"> Please Log in </span>
                   </Link>
                 </p>
               </label>
