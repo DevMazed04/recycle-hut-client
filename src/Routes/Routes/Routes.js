@@ -9,7 +9,6 @@ import AllAdmins from "../../Pages/Dashboard/AllAdmins/AllAdmins";
 import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
 import AllProducts from "../../Pages/Dashboard/AllProducts/AllProducts";
 import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
-import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import MyBuyers from "../../Pages/Dashboard/MyBuyers/MyBuyers";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
@@ -23,6 +22,7 @@ import AdminRoute from "../AdminRoute/AdminRoute";
 import BuyerRoute from "../BuyerRoute/BuyerRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
+import ManageAllUsers from "../../Pages/Dashboard/ManageAllUsers/ManageAllUsers";
 
 export const router = createBrowserRouter([
    {
@@ -100,10 +100,10 @@ export const router = createBrowserRouter([
                </SellerRoute>
          },
          {
-            path: "/dashboard/allusers",
+            path: "/dashboard/manageallusers",
             element:
                <AdminRoute>
-                  <AllUsers></AllUsers>
+                  <ManageAllUsers></ManageAllUsers>
                </AdminRoute>
          },
          {

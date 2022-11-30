@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 import Loading from '../../Shared/Loading/Loading';
 
-const AllUsers = () => {
+const ManageAllUsers = () => {
    const [deletingUser, setDeletingUser] = useState(null);
 
    const closeModal = () => {
@@ -97,4 +97,4 @@ const AllUsers = () => {
    );
 };
 
-export default AllUsers;
+export default ManageAllUsers;

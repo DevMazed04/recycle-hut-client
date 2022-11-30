@@ -18,8 +18,7 @@ const MyBuyers = () => {
    const myBuyers = bookings.filter(booking =>
       booking.sellerEmail === user?.email
    );
-
-
+   refetch();
 
    if (isLoading) {
       return <Loading></Loading>
