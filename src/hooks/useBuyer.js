@@ -9,7 +9,7 @@ const useBuyer = email => {
          fetch(`https://recycle-hut-server.vercel.app/users/buyer/${email}`)
             .then(res => res.json())
             .then(data => {
-               console.log(data);
+               // console.log(data);
                setIsBuyer(data.isBuyer);
                setIsBuyerLoading(false);
             })

@@ -1,12 +1,11 @@
 import React from "react";
 
-const Blog = () => {
+const Blogs = () => {
   return (
     <div>
       <h3 className="text-3xl text-center my-10 font-semibold text-gray-600 w-[85%] mx-auto">
         React Interview Questions
       </h3>
-
       <div
         className="accordion w-[85%] lg:w-[95%] mx-auto"
         id="accordionExample"
@@ -56,7 +55,7 @@ const Blog = () => {
               inputs. <br />
               <b className="text-cyan-500">
                 ii) Global (UI) state manage:
-              </b>{" "}
+              </b>
               Global state is data we manage across multiple components. Global
               state is necessary when we want to get and update data anywhere in
               our app, or in multiple components at least. A common example of
@@ -329,4 +328,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default Blogs;

@@ -60,8 +60,8 @@ const AllSellers = () => {
                <thead>
                   <tr>
                      <th>SL</th>
-                     <th>Name</th>
-                     <th>Email</th>
+                     <th>Seller Name</th>
+                     <th>Email Address</th>
                      <th>Verify Seller</th>
                      <th>Delete</th>
                   </tr>

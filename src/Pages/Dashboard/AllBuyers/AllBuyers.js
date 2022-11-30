@@ -61,9 +61,9 @@ const AllBuyers = () => {
                <thead>
                   <tr>
                      <th>SL</th>
-                     <th>Name</th>
-                     <th>Email</th>
-                     <th>Admin</th>
+                     <th>Buyer Name</th>
+                     <th>Email Address</th>
+                     <th>Make Admin</th>
                      <th>Delete</th>
                   </tr>
                </thead>

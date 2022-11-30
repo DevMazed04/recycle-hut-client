@@ -59,10 +59,10 @@ const MyProducts = () => {
                 <thead>
                   <tr>
                     <th>SL</th>
+                    <th>Product Name</th>
                     <th>Image</th>
-                    <th>Name</th>
                     <th>Category</th>
-                    <th>Status</th>
+                    <th>Price</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -70,14 +70,14 @@ const MyProducts = () => {
                   {
                     myProducts.map((myProduct, i) => <tr key={myProduct._id}>
                       <th>{i + 1}</th>
+                      <td>{myProduct.productName}</td>
                       <td><div className="avatar">
                         <div className="w-10 rounded-lg">
                           <img src={myProduct.productImg} alt={myProduct.productName} />
                         </div>
                       </div></td>
-                      <td>{myProduct.productName}</td>
                       <td>{myProduct.category}</td>
-                      <td>{myProduct.status}</td>
+                      <td>{myProduct.resalePrice} Tk</td>
                       <td>
                         <label onClick={() => setDeletingProduct(myProduct)} htmlFor="confirmation-modal" className="btn btn-sm btn-error bg-red-500 text-white">Delete</label>
                       </td>

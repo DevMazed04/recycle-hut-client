@@ -1,14 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import Loading from '../../Shared/Loading/Loading';
 import BookingModal from '../BookingModal/BookingModal';
 import AndroidPhone from './AndroidPhone';
 
 const Products = () => {
-   // const [androidPhones, setAndroidPhones] = useState([]);
-   // const [androidMobile, setAndroidMobile] = useState(null);
+
    const [phones, setPhones] = useState(null);
 
-   const { data: products = [], refetch, isLoading } = useQuery({
+   const { data: products = [], isLoading } = useQuery({
       queryKey: ['products'],
       queryFn: async () => {
          const res = await fetch("https://recycle-hut-server.vercel.app/products");
@@ -17,11 +17,10 @@ const Products = () => {
       }
    });
 
-   // useEffect(() => {
-   //    fetch('https://recycle-hut-server.vercel.app/androidPhones')
-   //       .then(res => res.json())
-   //       .then(data => setAndroidPhones(data))
-   // }, []);
+   if (isLoading) {
+      return <Loading></Loading>
+   }
+
 
    return (
       <div>

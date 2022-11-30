@@ -2,13 +2,15 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
-import Blog from "../../Pages/Blog/Blog";
+import Blogs from "../../Pages/Blogs/Blogs";
 import SingleCategory from "../../Pages/Categories/SingleCategory/SingleCategory";
 import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
 import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
+import AllProducts from "../../Pages/Dashboard/AllProducts/AllProducts";
 import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
 import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
+import MyBuyers from "../../Pages/Dashboard/MyBuyers/MyBuyers";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import ReportedItems from "../../Pages/Dashboard/ReportedItems/ReportedItems";
@@ -43,8 +45,8 @@ export const router = createBrowserRouter([
                </PrivateRoute>,
          },
          {
-            path: "/blog",
-            element: <Blog></Blog>,
+            path: "/blogs",
+            element: <Blogs></Blogs>,
          },
          {
             path: "/login",
@@ -90,10 +92,24 @@ export const router = createBrowserRouter([
                </SellerRoute>
          },
          {
+            path: "/dashboard/mybuyers",
+            element:
+               <SellerRoute>
+                  <MyBuyers></MyBuyers>
+               </SellerRoute>
+         },
+         {
             path: "/dashboard/allusers",
             element:
                <AdminRoute>
                   <AllUsers></AllUsers>
+               </AdminRoute>
+         },
+         {
+            path: "/dashboard/allproducts",
+            element:
+               <AdminRoute>
+                  <AllProducts></AllProducts>
                </AdminRoute>
          },
          {

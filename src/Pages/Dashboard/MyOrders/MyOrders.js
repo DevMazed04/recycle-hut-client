@@ -31,8 +31,8 @@ const MyOrders = () => {
               <thead>
                 <tr>
                   <th>SL</th>
+                  <th>Product Name</th>
                   <th>Image</th>
-                  <th>Phone Name</th>
                   <th>Price</th>
                   <th>Pay</th>
                 </tr>
@@ -41,6 +41,7 @@ const MyOrders = () => {
                 {myOrders?.map((myOrder, i) => (
                   <tr key={myOrder._id}>
                     <th>{i + 1}</th>
+                    <td>{myOrder.mobileName}</td>
                     <td>
                       <img
                         src={myOrder.img}
@@ -48,9 +49,7 @@ const MyOrders = () => {
                         width="30px"
                       />
                     </td>
-                    <td>{myOrder.mobileName}</td>
                     <td>{myOrder.price} Tk</td>
-                    {/* <td>{booking.slot}</td> */}
                   </tr>
                 ))}
               </tbody>

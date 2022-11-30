@@ -46,7 +46,7 @@ const Navbar = () => {
         </ul>
       </li>
 
-      <li className='hover:font-bold hover:text-[16px]'><Link to="/blog" className='rounded-lg'>Blog</Link></li>
+      <li className='hover:font-bold hover:text-[16px]'><Link to="/blogs" className='rounded-lg'>Blogs</Link></li>
 
       {
         user?.uid ?

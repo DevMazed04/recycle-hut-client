@@ -27,7 +27,7 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        toast.success("Registration Successful..");
+        toast.success(`You are successfully registered as a ${role}`);
 
         const userInfo = {
           displayName: name

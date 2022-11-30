@@ -53,19 +53,16 @@ const AddProduct = () => {
                resalePrice: data.resalePrice,
                originalPrice: data.originalPrice,
                sellerName: data.sellerName,
-               // sellerName: user.displayName,
                sellerMobile: data.sellerMobile,
                sellerEmail: user.email,
                location: data.location
             }
             console.log('product:', product)
 
-            // // save product information to the database
             fetch('https://recycle-hut-server.vercel.app/products', {
                method: 'POST',
                headers: {
                   'content-type': 'application/json',
-                  // authorization: `bearer ${localStorage.getItem('accessToken')}`
                },
                body: JSON.stringify(product)
             })

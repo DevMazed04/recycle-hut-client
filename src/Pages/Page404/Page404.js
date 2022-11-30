@@ -11,8 +11,8 @@ const Page404 = () => {
             <div className="notfound-404">
                <h1 className='text-red-600 font-bold'>404</h1>
             </div>
-            <h2 className='text-lg'>Oops! This Page Could Not Be Found</h2>
-            <p className='text-sm'>Sorry this page does not exist, have been removed, name changed or temporarily unavailable</p>
+            <h2 className='text-[22px] font-semibold'>Oops! This Page Could Not Be Found</h2>
+            <p className='text-[16px] font-semibol'>Sorry this page does not exist, have been removed, name changed or temporarily unavailable</p>
             <div>
                <Link to="/">
                   <button className='btn btn-primary mt-4' >Go To Home</button>
