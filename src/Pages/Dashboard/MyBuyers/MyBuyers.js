@@ -33,12 +33,11 @@ const MyBuyers = () => {
             </h3>
          ) : (
             <>
-               <h2 className="text-3xl mb-5">My Buyers</h2>
+               <h2 className="text-3xl mb-5">My Buyers Info</h2>
                <div className="overflow-x-auto">
                   <table className="table w-full">
                      <thead>
                         <tr>
-                           {/* <th>SL</th> */}
                            <th>Buyer Name</th>
                            <th>Mobile Booked</th>
                            <th>Email Address</th>
@@ -49,7 +48,6 @@ const MyBuyers = () => {
                      <tbody>
                         {
                            myBuyers.map((myBuyer, i) => <tr key={myBuyer._id}>
-                              {/* <th>{i + 1}</th> */}
                               <td>{myBuyer.buyerName}</td>
                               <td>{myBuyer.mobileName}</td>
                               <td>{myBuyer.buyerEmail}</td>

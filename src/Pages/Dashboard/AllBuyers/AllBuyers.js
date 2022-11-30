@@ -22,20 +22,6 @@ const AllBuyers = () => {
 
    const buyers = users.filter(user => user.role === "buyer");
 
-
-   const handleMakeAdmin = id => {
-      fetch(`https://recycle-hut-server.vercel.app/users/admin/${id}`, {
-         method: 'PUT',
-      })
-         .then(res => res.json())
-         .then(data => {
-            if (data.modifiedCount > 0) {
-               toast.success('Make Admin Successfully...')
-               refetch();
-            }
-         })
-   }
-
    const handleDeleteUser = user => {
       fetch(`https://recycle-hut-server.vercel.app/users/${user._id}`, {
          method: 'DELETE',
@@ -63,7 +49,6 @@ const AllBuyers = () => {
                      <th>SL</th>
                      <th>Buyer Name</th>
                      <th>Email Address</th>
-                     <th>Make Admin</th>
                      <th>Delete</th>
                   </tr>
                </thead>
@@ -73,7 +58,6 @@ const AllBuyers = () => {
                         <th>{i + 1}</th>
                         <td>{buyer.name}</td>
                         <td>{buyer.email}</td>
-                        <td>{buyer?.role !== 'admin' && <button onClick={() => handleMakeAdmin(buyer._id)} className='btn btn-xs btn-accent bg-cyan-500 text-white'>Make Admin</button>}</td>
                         <td>
                            <label onClick={() => setDeletingUser(buyer)} htmlFor="confirmation-modal" className="btn btn-xs btn-error bg-red-500 text-white">Delete</label>
                         </td>

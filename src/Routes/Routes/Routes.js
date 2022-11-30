@@ -5,6 +5,7 @@ import Main from "../../Layout/Main";
 import Blogs from "../../Pages/Blogs/Blogs";
 import SingleCategory from "../../Pages/Categories/SingleCategory/SingleCategory";
 import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
+import AllAdmins from "../../Pages/Dashboard/AllAdmins/AllAdmins";
 import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
 import AllProducts from "../../Pages/Dashboard/AllProducts/AllProducts";
 import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
@@ -110,6 +111,13 @@ export const router = createBrowserRouter([
             element:
                <AdminRoute>
                   <AllProducts></AllProducts>
+               </AdminRoute>
+         },
+         {
+            path: "/dashboard/alladmins",
+            element:
+               <AdminRoute>
+                  <AllAdmins></AllAdmins>
                </AdminRoute>
          },
          {

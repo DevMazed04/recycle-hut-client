@@ -41,8 +41,9 @@ const DashboardLayout = () => {
 
             {
               isAdmin && <>
-                <li className='text-[17px] hover:text-[19px] hover:text-lg font-semibold hover:text-cyan-400'><Link to="/dashboard/allusers">All Users</Link></li>
+                <li className='text-[17px] hover:text-[19px] hover:text-lg font-semibold hover:text-cyan-400'><Link to="/dashboard/allusers">Manage All Users</Link></li>
                 <li className='text-[17px] hover:text-[19px] hover:text-lg font-semibold hover:text-cyan-400'><Link to="/dashboard/allproducts">All Products</Link></li>
+                <li className='text-[17px] hover:text-[19px] hover:text-lg font-semibold hover:text-cyan-400'><Link to="/dashboard/alladmins">All Admins</Link></li>
                 <li className='text-[17px] hover:text-[19px] hover:text-lg font-semibold hover:text-cyan-400'><Link to="/dashboard/allbuyers">All Buyers</Link></li>
                 <li className='text-[17px] hover:text-[19px] hover:text-lg font-semibold hover:text-cyan-400'><Link to="/dashboard/allsellers">All Sellers</Link></li>
                 <li className='text-[17px] hover:text-[19px] hover:text-lg font-semibold hover:text-cyan-400'><Link to="/dashboard/reporteditems">Reported Items</Link></li>

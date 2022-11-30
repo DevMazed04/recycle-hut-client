@@ -59,8 +59,9 @@ const AllUsers = () => {
                   <tr>
                      <th>SL</th>
                      <th>Name</th>
-                     <th>Email</th>
-                     <th>Admin</th>
+                     <th>Role</th>
+                     <th>Email Address</th>
+                     <th>Make Admin</th>
                      <th>Delete</th>
                   </tr>
                </thead>
@@ -69,6 +70,7 @@ const AllUsers = () => {
                      users.map((user, i) => <tr key={user._id}>
                         <th>{i + 1}</th>
                         <td>{user.name}</td>
+                        <td>{user.role}</td>
                         <td>{user.email}</td>
                         <td>{user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-accent bg-cyan-500 text-white'>Make Admin</button>}</td>
                         <td>
