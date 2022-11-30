@@ -1,12 +1,12 @@
 import React from 'react';
-// import Banner from '../Banner/Banner';
 import Categories from '../../Categories/CategoriesInfo/CategoriesInfo';
+import Banner from '../Banner/Banner';
 
 const Home = () => {
    return (
-      <div>
+      <div className='mt-10'>
          <div className='mx-[21px]'>
-            {/* <Banner></Banner> */}
+            <Banner></Banner>
             <div className='my-16 w-[90%] mx-auto rounded-lg px-0 md:flex flex-col lg:flex-row justify-around items-center py-3 pt-0 py-sm-0'>
                <div>
                   <img className='rounded-3xl mt-5 flex' src="https://i.ibb.co/XWxyFSP/buy-second-hand-mobile-e1566879912819.jpg" alt="" width="350px" />

@@ -63,7 +63,7 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className="mb-16">
       <div className="text-center flex flex-col h-[550px] justify-center items-center">
         <h3 className="text-2xl text-center font-semibold text-cyan-600 mt-16">
           Please Register
