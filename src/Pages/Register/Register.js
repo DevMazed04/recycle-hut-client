@@ -39,7 +39,7 @@ const Register = () => {
           })
           .catch((err) => console.error(err));
       })
-
+      
       .catch((error) => {
         console.error(error);
         setSignupError(error.message);
@@ -57,7 +57,6 @@ const Register = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // setCreatedUserEmail(email);
         console.log("save user", data);
         navigate("/");
       });

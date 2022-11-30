@@ -45,6 +45,15 @@ const AuthProvider = ({ children }) => {
       return () => unsubscribe();
    }, [])
 
+
+   const [mobiles, setMobiles] = useState([]);
+
+   useEffect(() => {
+      fetch('https://recycle-hut-server.vercel.app/products')
+         .then(res => res.json())
+         .then(data => setMobiles(data))
+   }, [])
+
    const authInfo = {
       createUser,
       user,
@@ -53,6 +62,7 @@ const AuthProvider = ({ children }) => {
       googleSignIn,
       loading,
       logOut,
+      mobiles
    }
 
    return (

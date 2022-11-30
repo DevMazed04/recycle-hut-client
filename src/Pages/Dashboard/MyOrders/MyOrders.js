@@ -15,7 +15,7 @@ const MyOrders = () => {
     },
   });
 
-  const myOrders = bookings.filter(myOrder => myOrder.buyerEmail === user.email);
+  const myOrders = bookings.filter(myOrder => myOrder.buyerEmail === user?.email);
 
   return (
     <div className="p-8">

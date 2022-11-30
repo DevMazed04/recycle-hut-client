@@ -1,4 +1,5 @@
 import React from "react";
+import toast from "react-hot-toast";
 
 const AndroidPhone = ({ androidPhone, setPhone }) => {
   const {
@@ -19,6 +20,39 @@ const AndroidPhone = ({ androidPhone, setPhone }) => {
     sellerEmail,
     location,
   } = androidPhone;
+
+  const handleReportToAdmin = (androidPhone) => {
+    saveReportedItemToDb(androidPhone);
+  }
+
+  const saveReportedItemToDb = (androidPhone) => {
+    const { productName, productImg, category, sellerName } = androidPhone;
+    const reportedItem = {
+      productName,
+      productImg,
+      category,
+      sellerName,
+    };
+
+    fetch("https://recycle-hut-server.vercel.app/reported-items", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(reportedItem),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("save reportedItem", data);
+
+        if (data.acknowledged) {
+          toast.success(`${androidPhone.productName} is marked as a Reported Item`);
+        }
+        else {
+          toast.error(data.message);
+        }
+      });
+  };
 
   return (
     <div className="card md:card-side bg-base-100 shadow-xl w-[85%] lg:w-[65%] mx-auto">
@@ -82,6 +116,11 @@ const AndroidPhone = ({ androidPhone, setPhone }) => {
             onClick={() => setPhone(androidPhone)}
           >
             Book Now
+          </label>
+          <label
+            className="btn btn-outline btn-error"
+            onClick={() => handleReportToAdmin(androidPhone)}>
+            Report to Admin
           </label>
         </div>
       </div>
