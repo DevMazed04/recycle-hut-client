@@ -53,10 +53,7 @@ const AllAdmins = () => {
               <th>SL</th>
               <th>Admin Name</th>
               <th>Email Address</th>
-              {
-                admins.length > 1 &&
-                <th>Delete Admin</th>
-              }
+              <th>Admin Action</th>
             </tr>
           </thead>
           <tbody>
@@ -68,13 +65,18 @@ const AllAdmins = () => {
                 {
                   admins.length > 1 &&
                   <td>
-                    <label
-                      onClick={() => setDeletingAdmin(admin)}
-                      htmlFor="confirmation-modal"
-                      className="btn btn-xs btn-error  bg-red-500 text-white"
-                    >
-                      Delete Admin
-                    </label>
+                    {
+                      admin?.email !== "devmazed04@gmail.com" ?
+                        <label
+                          onClick={() => setDeletingAdmin(admin)}
+                          htmlFor="confirmation-modal"
+                          className="btn btn-xs btn-error  bg-red-500 text-white"
+                        >
+                          Delete Admin
+                        </label>
+                        :
+                        <span className="text-green-500 font-bold ml- text-[16px]">Main Admin</span>
+                    }
                   </td>
                 }
               </tr>

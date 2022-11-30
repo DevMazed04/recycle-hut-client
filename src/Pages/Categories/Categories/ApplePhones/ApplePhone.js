@@ -23,7 +23,7 @@ const ApplePhone = ({ applePhone, setPhone }) => {
 
    const handleReportToAdmin = (applePhone) => {
       saveReportedItemToDb(applePhone);
-   }
+   };
 
    const saveReportedItemToDb = (applePhone) => {
       const { productName, productImg, category, sellerName } = applePhone;
@@ -46,9 +46,10 @@ const ApplePhone = ({ applePhone, setPhone }) => {
             console.log("save reportedItem", data);
 
             if (data.acknowledged) {
-               toast.success(`${applePhone.productName} is marked as a Reported Item`);
-            }
-            else {
+               toast.success(
+                  `${applePhone.productName} is marked as a Reported Item`
+               );
+            } else {
                toast.error(data.message);
             }
          });
@@ -63,8 +64,13 @@ const ApplePhone = ({ applePhone, setPhone }) => {
                className="w-[100%] h-[250px]  lg:h-[350px] rounded-xl p-10 pb-0 md:pb-10 "
             />
          </figure>
+
          <div className="card-body">
-            <h2 className="card-title font-bold text-2xl mb-5 text-cyan-500">{productName}</h2>
+            <div className="flex justify-between">
+               <h2 className="card-title font-bold text-2xl mb-5 text-cyan-500">
+                  {productName}
+               </h2>
+            </div>
             <p>
                <span className="font-semibold">Brand:</span> {brand}
             </p>
@@ -120,7 +126,8 @@ const ApplePhone = ({ applePhone, setPhone }) => {
 
                <label
                   className="btn btn-outline btn-error"
-                  onClick={() => handleReportToAdmin(applePhone)}>
+                  onClick={() => handleReportToAdmin(applePhone)}
+               >
                   Report to Admin
                </label>
             </div>

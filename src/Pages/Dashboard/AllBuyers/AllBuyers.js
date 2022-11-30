@@ -49,7 +49,7 @@ const AllBuyers = () => {
                      <th>SL</th>
                      <th>Buyer Name</th>
                      <th>Email Address</th>
-                     <th>Delete</th>
+                     <th>Action</th>
                   </tr>
                </thead>
                <tbody>

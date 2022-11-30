@@ -1,6 +1,15 @@
-import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
-import app from '../firebase/firebase.config';
+import React, { createContext, useEffect, useState } from "react";
+import {
+   createUserWithEmailAndPassword,
+   getAuth,
+   GoogleAuthProvider,
+   onAuthStateChanged,
+   signInWithEmailAndPassword,
+   signInWithPopup,
+   signOut,
+   updateProfile,
+} from "firebase/auth";
+import app from "../firebase/firebase.config";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -11,48 +20,38 @@ const AuthProvider = ({ children }) => {
 
    const googleProvider = new GoogleAuthProvider();
 
-
    const createUser = (email, password) => {
       setLoading(true);
       return createUserWithEmailAndPassword(auth, email, password);
-   }
+   };
 
    const signIn = (email, password) => {
       setLoading(true);
       return signInWithEmailAndPassword(auth, email, password);
-   }
+   };
 
    const updateUser = (userInfo) => {
       return updateProfile(auth.currentUser, userInfo);
-   }
+   };
 
    const googleSignIn = () => {
       return signInWithPopup(auth, googleProvider);
-   }
+   };
 
    const logOut = () => {
       setLoading(true);
       return signOut(auth);
-   }
+   };
 
    useEffect(() => {
-      const unsubscribe = onAuthStateChanged(auth, currentUser => {
+      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
          setUser(currentUser);
-         console.log('currentUser:', currentUser);
+         console.log("currentUser:", currentUser);
          setLoading(false);
-      })
+      });
 
       return () => unsubscribe();
-   }, [])
-
-
-   const [mobiles, setMobiles] = useState([]);
-
-   useEffect(() => {
-      fetch('https://recycle-hut-server.vercel.app/products')
-         .then(res => res.json())
-         .then(data => setMobiles(data))
-   }, [])
+   }, []);
 
    const authInfo = {
       createUser,
@@ -62,14 +61,11 @@ const AuthProvider = ({ children }) => {
       googleSignIn,
       loading,
       logOut,
-      mobiles
-   }
+   };
 
    return (
       <div>
-         <AuthContext.Provider value={authInfo}>
-            {children}
-         </AuthContext.Provider>
+         <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
       </div>
    );
 };
