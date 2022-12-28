@@ -15,7 +15,7 @@ const MyProducts = () => {
 
   const { data: products, isLoading, refetch } = useQuery({
     queryKey: ['products'],
-    queryFn: async () => { 
+    queryFn: async () => {
       try {
         const res = await fetch('https://recycle-hut-server.vercel.app/products', {
         });
@@ -26,6 +26,19 @@ const MyProducts = () => {
       }
     }
   });
+
+  const handleSalesStatus = (id) => {
+    fetch(`https://recycle-hut-server.vercel.app/products/${id}`, {
+      method: "PUT",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          toast.success("Seller Verified Successfully..");
+          refetch();
+        }
+      });
+  };
 
   const handleDeleteProduct = product => {
     fetch(`https://recycle-hut-server.vercel.app/products/${product._id}`, {
@@ -63,6 +76,7 @@ const MyProducts = () => {
                     <th>Image</th>
                     <th>Category</th>
                     <th>Price</th>
+                    <th>Sales Status</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -78,6 +92,28 @@ const MyProducts = () => {
                       </div></td>
                       <td>{myProduct.category}</td>
                       <td>{myProduct.resalePrice} Tk</td>
+
+
+                      <td>
+                        {myProduct?.salesStatus !== "sold" ? (
+                          <button
+                            onClick={() => handleSalesStatus(myProduct._id)}
+                            className="btn btn-xs btn-accent bg-cyan-500 text-white"
+                          >
+                            Available
+                          </button>
+                        ) : (
+                          <>
+                            <span className="mr-2">Sold</span>
+                          </>
+                        )}
+                      </td>
+
+
+
+
+
+
                       <td>
                         <label onClick={() => setDeletingProduct(myProduct)} htmlFor="confirmation-modal" className="btn btn-sm btn-error bg-red-500 text-white">Delete</label>
                       </td>

@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Page404.css';
+import image404 from "../../assets/images/404.jpg";
 
 const Page404 = () => {
-   const bg = "https://i.ibb.co/KWJS1hc/404.jpg"
+
    return (
       <div style=
-         {{ background: `url(${bg})`, backgroundSize: "cover", backgroundRepeat: "repeat" }}>
+         {{ background: `url(${image404})`, backgroundSize: "cover", backgroundRepeat: "repeat" }}>
          <div className="notfound flex flex-col justify-center items-center text-yellow-400">
             <div className="notfound-404">
                <h1 className='text-red-600 font-bold'>404</h1>
