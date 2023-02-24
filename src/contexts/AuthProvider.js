@@ -4,6 +4,7 @@ import {
    getAuth,
    GoogleAuthProvider,
    onAuthStateChanged,
+   sendEmailVerification,
    signInWithEmailAndPassword,
    signInWithPopup,
    signOut,
@@ -20,28 +21,42 @@ const AuthProvider = ({ children }) => {
 
    const googleProvider = new GoogleAuthProvider();
 
+   // create user
    const createUser = (email, password) => {
       setLoading(true);
       return createUserWithEmailAndPassword(auth, email, password);
    };
 
+   // update user profile
+   const updateUser = (userInfo) => {
+      setLoading(true);
+      return updateProfile(auth.currentUser, userInfo);
+   };
+
+   // Email Verify
+   const verifyEmail = () => {
+      setLoading(true);
+      return sendEmailVerification(auth.currentUser)
+   }
+
+   // sign in
    const signIn = (email, password) => {
       setLoading(true);
       return signInWithEmailAndPassword(auth, email, password);
    };
 
-   const updateUser = (userInfo) => {
-      return updateProfile(auth.currentUser, userInfo);
-   };
-
+   // google sign in
    const googleSignIn = () => {
+      setLoading(true);
       return signInWithPopup(auth, googleProvider);
    };
 
+   // logout
    const logOut = () => {
       setLoading(true);
       return signOut(auth);
    };
+
 
    useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -53,13 +68,16 @@ const AuthProvider = ({ children }) => {
       return () => unsubscribe();
    }, []);
 
+
    const authInfo = {
       createUser,
       user,
-      signIn,
+      verifyEmail,
       updateUser,
+      signIn,
       googleSignIn,
       loading,
+      setLoading,
       logOut,
    };
 

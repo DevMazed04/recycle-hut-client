@@ -4,7 +4,7 @@ const Blogs = () => {
   return (
     <div>
       <h3 className="text-3xl text-center my-10 font-semibold text-gray-600 w-[85%] mx-auto">
-        React Interview Questions
+        React Common Questions
       </h3>
       <div
         className="accordion w-[85%] lg:w-[95%] mx-auto"

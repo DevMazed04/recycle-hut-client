@@ -1,8 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import { BeatLoader } from "react-spinners";
 import { AuthContext } from "../../contexts/AuthProvider";
+import Lottie from "lottie-react";
+import signup from "../../signup.json";
+import { TypeAnimation } from "react-type-animation";
 
 const Register = () => {
   const {
@@ -11,8 +15,8 @@ const Register = () => {
     handleSubmit,
   } = useForm();
 
-  const { createUser, updateUser } = useContext(AuthContext);
-  const [signupError, setSignupError] = useState("");
+  const { createUser, updateUser, loading, setLoading } = useContext(AuthContext);
+  // const [signupError, setSignupError] = useState("");
   const navigate = useNavigate();
 
   const handleRegister = (data) => {
@@ -21,7 +25,7 @@ const Register = () => {
     const name = data.name;
     const email = data.email;
     const password = data.password;
-    setSignupError("");
+    // setSignupError("");
 
     createUser(email, password)
       .then((result) => {
@@ -39,10 +43,11 @@ const Register = () => {
           })
           .catch((err) => console.error(err));
       })
-      
       .catch((error) => {
         console.error(error);
-        setSignupError(error.message);
+        toast.error(error.message);
+        // setSignupError(error.message);
+        setLoading(false);
       });
   };
 
@@ -63,10 +68,18 @@ const Register = () => {
   };
 
   return (
-    <div className="mb-16">
-      <div className="text-center flex flex-col h-[550px] justify-center items-center">
-        <h3 className="text-2xl text-center font-semibold text-cyan-600 mt-16">
-          Please Register
+    <div className="lg:flex flex-row-reverse justify-around items-center gap-16 border w-[80%] mx-auto">
+      <div className="lg:w-[50%] border p-3"><Lottie animationData={signup} loop={true} /></div>
+
+      <div className="text-center lg:w-[325px]">
+        <h3 className="text-2xl text-center font-semibold text-cyan-600 mt-8">
+          <TypeAnimation
+            sequence={['Please Register', 3000]}
+            speed={0}
+            wrapper="h2"
+            cursor={true}
+            repeat={Infinity}
+          />
         </h3>
         <div className="shadow-xl p-5 lg:p-6 rounded-2xl border mt-5">
           <form onSubmit={handleSubmit(handleRegister)}>
@@ -142,28 +155,27 @@ const Register = () => {
               )}
             </div>
 
-            <div>
+            {/* <div>
               {signupError && (
                 <p className="text-error font-semibold">{signupError}</p>
               )}
-            </div>
+            </div> */}
 
             <div className="form-control mt-6">
               <button
                 className="btn btn-accent bg-cyan-500 text-white"
                 value="register"
               >
-                Register
+                {loading ?
+                  <BeatLoader color="#fff" size="11" speedMultiplier=".6" />
+                  : "Register"}
               </button>
-              <label className="label">
-                <p>
-                  <span className="text-xs text-center">
-                    Already have an account?
-                  </span>
-                  <Link to="/login">
-                    <span className="text-xs text-primary"> Please Log in </span>
-                  </Link>
-                </p>
+
+              <label className="label flex justify-between items-center gap-x-1 mt-1">
+                <span className="text-[13px]"> Already have an account? </span>
+                <Link to="/login">
+                  <span className="text-[13px] text-primary font-semibold underline mb-0">Login Here</span>
+                </Link>
               </label>
             </div>
           </form>

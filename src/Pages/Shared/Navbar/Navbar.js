@@ -65,10 +65,9 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="hover:font-bold hover:text-[16px]">
-            {" "}
             <button onClick={handlelogOut} className="rounded-lg">
               Log Out
-            </button>{" "}
+            </button>
           </li>
         </>
       ) : (

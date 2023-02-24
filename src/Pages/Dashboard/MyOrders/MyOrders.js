@@ -34,7 +34,7 @@ const MyOrders = () => {
                   <th>Product Name</th>
                   <th>Image</th>
                   <th>Price</th>
-                  <th>Pay</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -50,6 +50,9 @@ const MyOrders = () => {
                       />
                     </td>
                     <td>{myOrder.price} Tk</td>
+                    <td>
+                      <span className="mr-2 btn btn-xs btn-accent bg-cyan-500 text-white">Pay</span>
+                    </td>
                   </tr>
                 ))}
               </tbody>

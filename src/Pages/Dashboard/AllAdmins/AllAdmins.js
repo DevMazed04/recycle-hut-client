@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import ConfirmationModal from "../../Shared/ConfirmationModal/ConfirmationModal";
 import Loading from "../../Shared/Loading/Loading";
 
+
 const AllAdmins = () => {
   const [deletingAdmin, setDeletingAdmin] = useState(null);
 
@@ -39,9 +40,11 @@ const AllAdmins = () => {
       });
   };
 
+
   if (isLoading) {
     return <Loading></Loading>;
   }
+
 
   return (
     <div className="p-8">
@@ -84,6 +87,7 @@ const AllAdmins = () => {
           </tbody>
         </table>
       </div>
+
 
       {deletingAdmin && (
         <ConfirmationModal

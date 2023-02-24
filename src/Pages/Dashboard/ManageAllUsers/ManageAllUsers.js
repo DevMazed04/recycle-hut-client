@@ -4,12 +4,14 @@ import toast from "react-hot-toast";
 import ConfirmationModal from "../../Shared/ConfirmationModal/ConfirmationModal";
 import Loading from "../../Shared/Loading/Loading";
 
+
 const ManageAllUsers = () => {
   const [deletingUser, setDeletingUser] = useState(null);
 
   const closeModal = () => {
     setDeletingUser(null);
   };
+
 
   const {
     data: users = [],
@@ -24,6 +26,7 @@ const ManageAllUsers = () => {
     },
   });
 
+
   const handleMakeAdmin = (id) => {
     fetch(`https://recycle-hut-server.vercel.app/users/admin/${id}`, {
       method: "PUT",
@@ -37,6 +40,7 @@ const ManageAllUsers = () => {
       });
   };
 
+
   const handleDeleteUser = (user) => {
     fetch(`https://recycle-hut-server.vercel.app/users/${user._id}`, {
       method: "DELETE",
@@ -49,6 +53,7 @@ const ManageAllUsers = () => {
         }
       });
   };
+
 
   if (isLoading) {
     return <Loading></Loading>;
