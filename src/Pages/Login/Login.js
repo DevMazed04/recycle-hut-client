@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
@@ -16,8 +16,9 @@ const Login = () => {
     handleSubmit,
   } = useForm();
 
-  const { signIn, googleSignIn, updateUser, loading, setLoading } = useContext(AuthContext);
+  const { signIn, googleSignIn, updateUser, loading, setLoading, passwordReset } = useContext(AuthContext);
   // const [loginError, setLoginError] = useState("");
+  const [userEmail, setUserEmail] = useState("");
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -51,6 +52,8 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        toast.success("Login Successful..");
+        navigate(from, { replace: true });
 
         const name = user.displayName;
         const email = user.email;
@@ -76,6 +79,24 @@ const Login = () => {
       });
   };
 
+  const handlePasswordReset = () => {
+    if (!userEmail) {
+      toast.error("Please enter your email to reset password");
+      return;
+    }
+    passwordReset(userEmail)
+      .then(() => {
+        toast.success("please check your email for password reset link");
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error(error);
+        toast.error(error.message);
+        setLoading(false);
+      })
+  }
+
+
   const saveUser = (role, name, email) => {
     const user = { role, name, email };
     fetch("https://recycle-hut-server.vercel.app/users", {
@@ -87,8 +108,8 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("save user", data);
-        navigate("/");
+        // console.log("save user", data);
+        // navigate("/");
       });
   };
 
@@ -115,7 +136,7 @@ const Login = () => {
           <TypeAnimation
             sequence={['Login Here', 3000]}
             speed={0}
-            wrapper="h2"
+            // wrapper="h2"
             cursor={true}
             repeat={Infinity}
           />
@@ -132,6 +153,7 @@ const Login = () => {
                 placeholder="Enter Email"
                 className="input input-bordered w-full"
                 {...register("email", { required: "Please! Enter your email" })}
+                onBlur={(event) => setUserEmail(event.target.value)}
               />
               {errors.email && (
                 <p className="text-error font-semibold text-start mt-2 w-60">
@@ -159,9 +181,9 @@ const Login = () => {
               )}
             </div>
 
-            <div className="form-control">
+            <div className="form-control" onClick={handlePasswordReset}>
               <label className="label">
-                <span className="text-xs">Forget Password?</span>
+                <span className="text-xs hover:underline hover:font-semibold hover:text-red-500 cursor-pointer">Forgot Password?</span>
               </label>
             </div>
 
@@ -173,9 +195,7 @@ const Login = () => {
 
             <div className="form-control mt-4">
               <button
-                className="btn btn-accent bg-cyan-500 text-white"
-                value="login"
-              >
+                className="btn btn-accent bg-cyan-500 text-white" value="login">
                 {loading ?
                   <BeatLoader color="#fff" size="11" speedMultiplier=".6" />
                   : "Login"}
@@ -203,7 +223,7 @@ const Login = () => {
           <label className="label flex justify-between items-center gap-x-1 mt-1">
             <span className="text-[13px]"> New to Recycle Hut? </span>
             <Link to="/register">
-              <span className="text-[13px] text-primary font-semibold underline">Please Register</span>
+              <span className="text-[13px] text-primary font-semibold hover:underline hover:font-bold">Please Register</span>
             </Link>
           </label>
         </div>

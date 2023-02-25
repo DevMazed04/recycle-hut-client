@@ -15,14 +15,15 @@ const Register = () => {
     handleSubmit,
   } = useForm();
 
-  const { createUser, updateUser, loading, setLoading } = useContext(AuthContext);
+  const { createUser, updateUser, loading, setLoading, verifyEmail } = useContext(AuthContext);
   // const [signupError, setSignupError] = useState("");
   const navigate = useNavigate();
 
   const handleRegister = (data) => {
-    console.log(data);
+    // console.log(data);
     const role = data.role;
     const name = data.name;
+    // const image = data.image;
     const email = data.email;
     const password = data.password;
     // setSignupError("");
@@ -31,14 +32,17 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        toast.success(`You are successfully registered as a ${role}`);
+        toast.success(`Registration successful as a ${role}`);
 
         const userInfo = {
-          displayName: name
+          displayName: name,
         };
 
         updateUser(userInfo)
           .then(() => {
+            verifyEmail().then(() => {
+              toast.success("Please check your email for verification link");
+            })
             saveUser(role, name, email);
           })
           .catch((err) => console.error(err));
@@ -76,7 +80,7 @@ const Register = () => {
           <TypeAnimation
             sequence={['Please Register', 3000]}
             speed={0}
-            wrapper="h2"
+            // wrapper="h2"
             cursor={true}
             repeat={Infinity}
           />
@@ -163,9 +167,7 @@ const Register = () => {
 
             <div className="form-control mt-6">
               <button
-                className="btn btn-accent bg-cyan-500 text-white"
-                value="register"
-              >
+                className="btn btn-accent bg-cyan-500 text-white" value="register">
                 {loading ?
                   <BeatLoader color="#fff" size="11" speedMultiplier=".6" />
                   : "Register"}
