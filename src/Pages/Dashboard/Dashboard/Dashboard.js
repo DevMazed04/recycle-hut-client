@@ -16,7 +16,7 @@ const Dashboard = () => {
          </div>
          <div className="text-[22px] font-semibold mt-1 flex justify-center items-center w-[90%] mx-auto ">
             <span className="text-center">
-               Hi! <span className="font-bold text-green-500 italic text-[20px]">
+               Hi! <span className="font-bold text-green-500  text-[20px]">
                   {user?.displayName}
                </span>
                <br /> Welcome To Your Dashboard
